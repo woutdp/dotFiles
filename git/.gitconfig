@@ -1,0 +1,22 @@
+[user]
+  email = woutdp@gmail.com
+  name = Wout De Puysseleir
+[push]
+  default = simple
+[core]
+  editor = nvim
+	excludesfile = /home/wout/.gitignore_global
+[commit]
+  verbose = true
+[mergetool]
+  path = meld
+[color]
+  ui = auto
+[alias]
+  wip = !"git add .; git commit -nm 'WIP: This is a work in progress commit'"
+  unwip = !"if git log -1 --pretty=%B | grep 'WIP'; then git reset HEAD~1; else echo 'No WIP commit was found'; fi"
+  slog = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'
+[rebase]
+	autosquash = true
+[help]
+	autocorrect = 1

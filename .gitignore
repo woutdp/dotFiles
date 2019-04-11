@@ -1,0 +1,16 @@
+# Fish
+/fish/.config/fish/completions/fisher.fish
+/fish/.config/fish/config_local.fish
+/fish/.config/fish/fish_variables
+/fish/.config/fish/fishd.wout-lenovo
+/fish/.config/fish/fishfile
+/fish/.config/fish/functions/*
+/fish/.config/fisherman/**
+
+# Nvim
+/nvim/.config/nvim/.netrwhist
+/nvim/.config/nvim/plugged/*
+
+# Tmux
+/tmux/.tmux/resurrect/*
+/tmux/.tmux/plugins/*
