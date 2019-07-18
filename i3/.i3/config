@@ -166,6 +166,7 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 assign [class="Google-chrome"] $ws1
 assign [class="Slack"] $ws2
 assign [class="jetbrains-pycharm"] $ws3
+assign [class="Clockify"] $ws7
 assign [class="Spotify"] $ws8
 
 # Open specific applications in floating mode
