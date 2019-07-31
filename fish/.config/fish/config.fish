@@ -34,5 +34,17 @@ alias force_push "git push --force-with-lease origin (current_branch)"
 
 alias gg "lazygit"
 
+# Spacefish settings
+set SPACEFISH_PACKAGE_SHOW false
+set SPACEFISH_NODE_SHOW false
+set SPACEFISH_DOCKER_SHOW false
+
+# Fisherman install
+if not functions -q fisher
+  set -q XDG_CONFIG_HOME; or set XDG_CONFIG_HOME ~/.config
+  curl https://git.io/fisher --create-dirs -sLo $XDG_CONFIG_HOME/fish/functions/fisher.fish
+  fish -c fisher
+end
+
 eval (python -m virtualfish)
 source ~/.config/fish/config_local.fish
