@@ -8,11 +8,8 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'airblade/vim-gitgutter'
   Plug 'scrooloose/nerdcommenter'
   Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-  " Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
   Plug 'dag/vim-fish', { 'for': 'fish' }
   Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
-  " Plug 'davidhalter/jedi-vim', {'for': 'python'}
-  " Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
 " Use space instead of \ as leader
@@ -28,10 +25,13 @@ set mouse=a
 filetype plugin on
 
 " Colorscheme
+colorscheme gruvbox
 highlight Normal ctermbg=black ctermfg=white
 set background=dark
-colorscheme gruvbox
-let g:gruvbox_contrast_dark = 'medium'
+let g:gruvbox_contrast_dark='soft'
+let g:gruvbox_invert_selection=0
+let g:gitgutter_override_sign_column_highlight=1
+" let g:gruvbox_number_column='bg1'
 
 " Use fish shell
 set shell=/bin/fish
@@ -46,6 +46,11 @@ inoremap jj <esc>
 autocmd FileType python set sw=4
 autocmd FileType python set ts=4
 autocmd FileType python set sts=4
+
+" Remember the last position in the file
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 0 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+endif
 
 " ===============
 " Plugin settings
