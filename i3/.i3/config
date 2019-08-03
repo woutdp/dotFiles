@@ -267,24 +267,24 @@ exec_always --no-startup-id fix_xcursor
 # to:
 # background $term_background
 # Same logic applied to everything else.
-set_from_resource $term_background background
-set_from_resource $term_foreground foreground
-set_from_resource $term_color0     color0
-set_from_resource $term_color1     color1
-set_from_resource $term_color2     color2
-set_from_resource $term_color3     color3
-set_from_resource $term_color4     color4
-set_from_resource $term_color5     color5
-set_from_resource $term_color6     color6
-set_from_resource $term_color7     color7
-set_from_resource $term_color8     color8
-set_from_resource $term_color9     color9
-set_from_resource $term_color10    color10
-set_from_resource $term_color11    color11
-set_from_resource $term_color12    color12
-set_from_resource $term_color13    color13
-set_from_resource $term_color14    color14
-set_from_resource $term_color15    color15
+# set_from_resource $term_background background
+# set_from_resource $term_foreground foreground
+# set_from_resource $term_color0     color0
+# set_from_resource $term_color1     color1
+# set_from_resource $term_color2     color2
+# set_from_resource $term_color3     color3
+# set_from_resource $term_color4     color4
+# set_from_resource $term_color5     color5
+# set_from_resource $term_color6     color6
+# set_from_resource $term_color7     color7
+# set_from_resource $term_color8     color8
+# set_from_resource $term_color9     color9
+# set_from_resource $term_color10    color10
+# set_from_resource $term_color11    color11
+# set_from_resource $term_color12    color12
+# set_from_resource $term_color13    color13
+# set_from_resource $term_color14    color14
+# set_from_resource $term_color15    color15
 
 # Start i3bar to display a workspace bar (plus the system information i3status if available)
 bar {
@@ -293,10 +293,6 @@ bar {
 	status_command i3status
 	position bottom
 
-## please set your primary output first. Example: 'xrandr --output eDP1 --primary'
-#	tray_output primary
-#	tray_output eDP1
-
 	bindsym button4 nop
 	bindsym button5 nop
 	strip_workspace_numbers yes
@@ -304,13 +300,13 @@ bar {
         height 20
 
         colors {
-            background #2D2D2D
-            statusline #928374
+            background #33332F
+            statusline #a89984
 
-            focused_workspace  #FEC600 #FEC600 #000000
-            active_workspace   #FEC600 #FEC600 #000000
-            inactive_workspace #2D2D2D #303030 #888888
-            urgent_workspace   #4CFFFC #4CFFFC #000000
+            focused_workspace  #d79921 #d79921 #282828
+            active_workspace   #d79921 #d79921 #282828
+            inactive_workspace #33332F #33332F #a89984
+            urgent_workspace   #cc241d #cc241d #282828
         }
 }
 
@@ -319,8 +315,13 @@ bindsym $mod+m bar mode toggle
 
 # Theme colors
 # class                   border  backgr. text    indic.   child_border
-  client.unfocused #303030 #303030 #ffffff #ffffff
-  client.focused   #FEC600 #FEC600 #000000 #000000
+  client.unfocused        #33332F #33332F #a89984 #a89984
+  client.focused          #d79921 #d79921 #282828 #282828
+  client.focused_inactive #333333 #5f676a #ffffff #484e50  #5f676a
+  client.urgent           #cc241d #cc241d #282828 #ffffff  #282828
+  client.placeholder      #000000 #0c0c0c #ffffff #000000  #0c0c0c
+
+  client.background       #ffffff
 
 #############################
 ### settings for i3-gaps: ###
