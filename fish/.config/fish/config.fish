@@ -4,6 +4,7 @@ set -gx PATH ~/.gem/ruby/2.6.0/bin $PATH
 
 alias c "clear"
 alias vim "/usr/bin/nvim"
+alias ls "exa"
 
 function fuck
     eval command sudo $history[1]
