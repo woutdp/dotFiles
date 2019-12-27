@@ -332,6 +332,15 @@ bindsym $mod+m bar mode toggle
 # Smart gaps (gaps used if only more than one container on the workspace)
 smart_gaps on
 
+set $mode_gaps_toggle Toggle gaps: (1) on (2) off
+bindsym $mod+g mode "$mode_gaps_toggle"
+mode "$mode_gaps_toggle" {
+    bindsym 1 mode "default", gaps inner all set 14, gaps outer all set -2
+    bindsym 2 mode "default", gaps inner all set 0, gaps outer all set 0
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
 # Smart borders (draw borders around container only if it is not the only container on this workspace)
 # on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
 smart_borders on
