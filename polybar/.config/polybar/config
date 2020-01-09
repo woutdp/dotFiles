@@ -1,0 +1,99 @@
+[colors]
+background = #33332F
+background-alt = #444
+foreground = #EBDBB2
+foreground-alt = #555
+primary = #ffb52a
+secondary = #e60053
+alert = #bd2c40
+
+[bar/mybar]
+modules-left = bspwm
+modules-right = wlan battery pulseaudio date
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+font-0 = "hack:pixelsize=11;2"
+font-1 = "FontAwesome5Free:style=Solid:size=14;2"
+font-2 = "FontAwesome5Free:style=Regular:size=14;2"
+font-3 = "FontAwesome5Brands:style=Regular:size=14;2"
+
+override-redirect = true
+enable-ipc = true
+bottom = true
+tray-position = right
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+separator = " | "
+
+[module/date]
+type = internal/date
+date = %A, %H:%M %d-%m-%Y
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ACAD
+full-at = 99
+poll-interval = 1
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full = <ramp-capacity> <label-full>
+label-charging = %percentage%%
+label-discharging = %percentage%%
+label-full = %percentage%%
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-framerate = 460
+
+[module/wlan]
+type = internal/network
+interface = wlan0
+interval = 3
+format-connected = <label-connected>
+label-connected = %essid% [%signal%]  %downspeed%  %upspeed%
+
+[module/bspwm]
+type = internal/bspwm
+
+label-focused = %name%
+label-focused-background = ${colors.background-alt}
+label-focused-padding = 1
+
+label-occupied = %name%
+label-occupied-padding = 1
+label-occupied-foreground = ${colors.foreground-alt}
+
+label-urgent = %name%!
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 1
+
+# Don't display empty workspaces
+label-empty =
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+use-ui-max = false
+
+format-volume = <label-volume>
+label-volume =  %percentage%%
+label-volume-foreground = ${root.foreground}
+
+label-muted = muted
+label-muted-foreground = #666
+click-right = pavucontrol
+
