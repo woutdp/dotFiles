@@ -50,7 +50,7 @@ super + 0; l
   bspc quit
 
 # quit/restart bspwm
-super + shift + r
+super + / + r
 	bspc wm -r
 
 # close and kill
@@ -67,7 +67,7 @@ super + y
 
 # swap the current node and the biggest node
 super + g
-	bspc node -s biggest
+	bspc node -s biggest.local
 
 # Focus or send to a given desktop
 super + {_,shift + }Escape
@@ -76,6 +76,9 @@ super + {_,shift + }Escape
 # Focus or send to a given desktop
 super + {_,shift + }{1-8}
 	bspc {desktop -f,node -d} '^{2-9}' --follow
+
+super + {_,shift + }r
+  bspc node -f @parent; bspc node -R {_,-}90
 
 ###############
 # state/flags #

@@ -14,6 +14,7 @@ bspc config pointer_follows_focus false
 bspc config focus_follows_pointer true
 
 bspc rule -a jetbrains-pycharm desktop='^4'
+bspc rule -a Gpick state=floating sticky=on
 
 # Background
 feh --bg-center ~/Pictures/Wallpapers/gruvbox.jpg
@@ -29,6 +30,3 @@ alsactl --file ~/.config/asound.state restore
 dunst -conf ~/.config/dunst/dunstrc &
 compton &
 sxhkd &
-
-# We expect polybar to have been launched at this point
-polybar-msg cmd hide
