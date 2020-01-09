@@ -10,10 +10,6 @@ while pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
 polybar mybar --reload &
 sleep 1
 
-# pgrep -u $UID -x polybar
-# Wait until the Polybar is reloaded
-# until pgrep -u $UID -x polybar >/dev/null; do sleep 1; done
-
 # Hide the bar
 polybar-msg cmd hide
 

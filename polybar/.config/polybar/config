@@ -7,9 +7,10 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
+
 [bar/mybar]
 modules-left = bspwm
-modules-right = wlan battery pulseaudio date
+modules-right = backlight temperature memory cpu wlan battery pulseaudio date
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -29,9 +30,11 @@ cursor-scroll = ns-resize
 
 separator = " | "
 
+
 [module/date]
 type = internal/date
 date = %A, %H:%M %d-%m-%Y
+
 
 [module/battery]
 type = internal/battery
@@ -59,12 +62,17 @@ animation-charging-2 = 
 animation-charging-3 = 
 animation-charging-framerate = 460
 
+
 [module/wlan]
 type = internal/network
 interface = wlan0
 interval = 3
-format-connected = <label-connected>
+format-connected = %{A:connman-gtk&:}<label-connected>%{A}
 label-connected = %essid% [%signal%]  %downspeed%  %upspeed%
+
+label-disconnected = %{A:connman-gtk&:}disconnected%{A}
+label-disconnected-foreground = ${colors.foreground-alt}
+
 
 [module/bspwm]
 type = internal/bspwm
@@ -84,16 +92,160 @@ label-urgent-padding = 1
 # Don't display empty workspaces
 label-empty =
 
+
 [module/pulseaudio]
 type = internal/pulseaudio
 
+sink = alsa_output.pci-0000_00_1f.3.analog-surround-40
 use-ui-max = false
 
-format-volume = <label-volume>
+format-volume = %{A3:pavucontrol&:}<label-volume>%{A}
 label-volume =  %percentage%%
 label-volume-foreground = ${root.foreground}
 
-label-muted = muted
-label-muted-foreground = #666
-click-right = pavucontrol
+label-muted = %{A3:pavucontrol&:}muted%{A}
+label-muted-foreground = ${colors.foreground-alt}
 
+click-right = pavucontrol &
+
+
+[module/cpu]
+type = internal/cpu
+
+interval = 0.1
+format = <ramp-coreload>
+label = CPU %percentage%%
+
+; Spacing between individual per-core ramps
+ramp-coreload-spacing = 1
+ramp-coreload-0 = ▁
+ramp-coreload-1 = ▂
+ramp-coreload-2 = ▃
+ramp-coreload-3 = ▄
+ramp-coreload-4 = ▅
+ramp-coreload-5 = ▆
+ramp-coreload-6 = ▇
+ramp-coreload-7 = █
+
+click-left = pavucontrol &
+
+[module/memory]
+type = internal/memory
+
+interval = 0.1
+; Available tags:
+;   <label> (default)
+;   <bar-used>
+;   <bar-free>
+;   <ramp-used>
+;   <ramp-free>
+;   <bar-swap-used>
+;   <bar-swap-free>
+;   <ramp-swap-used>
+;   <ramp-swap-free>
+format = <label> <bar-used>
+
+; Available tokens:
+;   %percentage_used% (default)
+;   %percentage_free%
+;   %gb_used%
+;   %gb_free%
+;   %gb_total%
+;   %mb_used%
+;   %mb_free%
+;   %mb_total%
+;   %percentage_swap_used%
+;   %percentage_swap_free%
+;   %mb_swap_total%
+;   %mb_swap_free%
+;   %mb_swap_used%
+;   %gb_swap_total%
+;   %gb_swap_free%
+;   %gb_swap_used%
+
+label = RAM %gb_used%/%gb_free%
+
+; Only applies if <bar-used> is used
+bar-used-indicator =
+bar-used-width = 50
+bar-used-foreground-0 = #55aa55
+bar-used-foreground-1 = #557755
+bar-used-foreground-2 = #f5a70a
+bar-used-foreground-3 = #ff5555
+bar-used-fill = ▐
+bar-used-empty = ▐
+bar-used-empty-foreground = #444444
+
+; Only applies if <ramp-used> is used
+ramp-used-0 = ▁
+ramp-used-1 = ▂
+ramp-used-2 = ▃
+ramp-used-3 = ▄
+ramp-used-4 = ▅
+ramp-used-5 = ▆
+ramp-used-6 = ▇
+ramp-used-7 = █
+
+; Only applies if <ramp-free> is used
+ramp-free-0 = ▁
+ramp-free-1 = ▂
+ramp-free-2 = ▃
+ramp-free-3 = ▄
+ramp-free-4 = ▅
+ramp-free-5 = ▆
+ramp-free-6 = ▇
+ramp-free-7 = █
+
+
+[module/temperature]
+type = internal/temperature
+
+; Seconds to sleep between updates
+; Default: 1
+interval = 0.5
+
+; Thermal zone to use
+; To list all the zone types, run
+; $ for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
+; Default: 0
+thermal-zone = 0
+
+; Full path of temperature sysfs path
+; Use `sensors` to find preferred temperature source, then run
+; $ for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
+; to find path to desired file
+; Default reverts to thermal zone setting
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon6/temp1_input
+
+; Base temperature for where to start the ramp (in degrees celsius)
+; Default: 0
+base-temperature = 20
+
+; Threshold temperature to display warning label (in degrees celsius)
+; Default: 80
+warn-temperature = 60
+
+
+[module/backlight]
+type = internal/backlight
+
+; Use the following command to list available cards:
+; $ ls -1 /sys/class/backlight/
+card = intel_backlight
+
+; Available tags:
+;   <label> (default)
+;   <ramp>
+;   <bar>
+format = <ramp>
+
+; Available tokens:
+;   %percentage% (default)
+label = %percentage%%
+
+; Only applies if <ramp> is used
+ramp-0 = 1
+ramp-1 = 2
+ramp-2 = 3
+ramp-3 = 4
+ramp-4 = 5

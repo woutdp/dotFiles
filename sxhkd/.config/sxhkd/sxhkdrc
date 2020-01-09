@@ -65,18 +65,24 @@ super + m
 super + y
 	bspc node newest.marked.local -n newest.!automatic.local
 
-# swap the current node and the biggest node
+# swap the current node and the biggest local node
 super + g
 	bspc node -s biggest.local
 
-# Focus or send to a given desktop
-super + {_,shift + }Escape
-	bspc {desktop -f,node -d} '^1' --follow
+# Focus to a given desktop
+super + Escape
+  bspc query -D -d "^1.focused" && bspc desktop -f last || bspc desktop -f "^1"
+super + {1-8}
+  desktop='^{2-9}'; \
+  bspc query -D -d "$desktop.focused" && bspc desktop -f last || bspc desktop -f "$desktop"
 
-# Focus or send to a given desktop
-super + {_,shift + }{1-8}
-	bspc {desktop -f,node -d} '^{2-9}' --follow
+# Send to a given desktop
+super + shift + Escape
+  bspc node -d '^1' --follow
+super + shift + {1-8}
+  bspc node -d '^{2-9}' --follow
 
+# Rotate nodes
 super + {_,shift + }r
   bspc node -f @parent; bspc node -R {_,-}90
 
