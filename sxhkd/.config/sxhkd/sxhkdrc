@@ -10,6 +10,10 @@ super + Return
 super + b
   firefox
 
+# Filemanager
+super + n
+  thunar
+
 # Rofi
 super + d
   rofi -show combi -p 'λ'
