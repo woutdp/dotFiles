@@ -41,6 +41,9 @@ XF86AudioLowerVolume
 XF86AudioMute
   ~/scripts/volume.sh mute
 
+Print
+  flameshot gui
+
 #################
 # bspwm hotkeys #
 #################
