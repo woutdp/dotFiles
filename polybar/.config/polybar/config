@@ -15,10 +15,10 @@ modules-right = backlight temperature memory cpu wlan battery pulseaudio date
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-font-0 = "hack:pixelsize=11;2"
-font-1 = "FontAwesome5Free:style=Solid:size=14;2"
-font-2 = "FontAwesome5Free:style=Regular:size=14;2"
-font-3 = "FontAwesome5Brands:style=Regular:size=14;2"
+font-0 = hack:pixelsize=11;2
+font-1 = FontAwesome5Free:style=Solid:size=11;2
+font-2 = FontAwesome5Free:style=Regular:size=11;2
+font-3 = FontAwesome5Brands:style=Regular:size=11;2
 
 override-redirect = true
 enable-ipc = true
@@ -67,55 +67,60 @@ animation-charging-framerate = 460
 type = internal/network
 interface = wlan0
 interval = 3
-format-connected = %{A:connman-gtk&:}<label-connected>%{A}
-label-connected = %essid% [%signal%]  %downspeed%  %upspeed%
-
+format-connected = %{A:connman-gtk&:}<ramp-signal> <label-connected>%{A}
+label-connected = %essid%
 label-disconnected = %{A:connman-gtk&:}disconnected%{A}
 label-disconnected-foreground = ${colors.foreground-alt}
+ramp-signal-0 = 
+ramp-signal-1 = 
+ramp-signal-2 = 
+ramp-signal-3 = 
+ramp-signal-4 = 
 
 
 [module/bspwm]
 type = internal/bspwm
-
-label-focused = %name%
+format = <label-state> <label-mode>
+fuzzy-match = true
+label-focused = %icon%
 label-focused-background = ${colors.background-alt}
 label-focused-padding = 1
-
-label-occupied = %name%
+label-occupied = %icon%
 label-occupied-padding = 1
 label-occupied-foreground = ${colors.foreground-alt}
-
-label-urgent = %name%!
+label-urgent = %icon%!
 label-urgent-background = ${colors.alert}
 label-urgent-padding = 1
-
 # Don't display empty workspaces
 label-empty =
+ws-icon-0 = λ;
+ws-icon-1 = 1;
+ws-icon-2 = 2;2
+ws-icon-3 = 3;
+ws-icon-4 = 4;4
+ws-icon-5 = 5;5
+ws-icon-6 = 6;6
+ws-icon-7 = 7;7
+ws-icon-8 = 8;
 
 
 [module/pulseaudio]
 type = internal/pulseaudio
-
 sink = alsa_output.pci-0000_00_1f.3.analog-surround-40
 use-ui-max = false
-
 format-volume = %{A3:pavucontrol&:}<label-volume>%{A}
 label-volume =  %percentage%%
 label-volume-foreground = ${root.foreground}
-
-label-muted = %{A3:pavucontrol&:}muted%{A}
+label-muted = %{A3:pavucontrol&:}%{A}
 label-muted-foreground = ${colors.foreground-alt}
-
 click-right = pavucontrol &
 
 
 [module/cpu]
 type = internal/cpu
-
 interval = 0.1
 format = <ramp-coreload>
 label = CPU %percentage%%
-
 ; Spacing between individual per-core ramps
 ramp-coreload-spacing = 1
 ramp-coreload-0 = ▁
@@ -126,8 +131,6 @@ ramp-coreload-4 = ▅
 ramp-coreload-5 = ▆
 ramp-coreload-6 = ▇
 ramp-coreload-7 = █
-
-click-left = pavucontrol &
 
 [module/memory]
 type = internal/memory
@@ -199,53 +202,21 @@ ramp-free-7 = █
 
 [module/temperature]
 type = internal/temperature
-
-; Seconds to sleep between updates
-; Default: 1
-interval = 0.5
-
-; Thermal zone to use
-; To list all the zone types, run
-; $ for i in /sys/class/thermal/thermal_zone*; do echo "$i: $(<$i/type)"; done
-; Default: 0
+interval = 1
 thermal-zone = 0
-
-; Full path of temperature sysfs path
-; Use `sensors` to find preferred temperature source, then run
-; $ for i in /sys/class/hwmon/hwmon*/temp*_input; do echo "$(<$(dirname $i)/name): $(cat ${i%_*}_label 2>/dev/null || echo $(basename ${i%_*})) $(readlink -f $i)"; done
-; to find path to desired file
-; Default reverts to thermal zone setting
 hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon6/temp1_input
-
-; Base temperature for where to start the ramp (in degrees celsius)
-; Default: 0
 base-temperature = 20
-
-; Threshold temperature to display warning label (in degrees celsius)
-; Default: 80
 warn-temperature = 60
 
 
 [module/backlight]
 type = internal/backlight
-
-; Use the following command to list available cards:
-; $ ls -1 /sys/class/backlight/
 card = intel_backlight
-
-; Available tags:
-;   <label> (default)
-;   <ramp>
-;   <bar>
-format = <ramp>
-
-; Available tokens:
-;   %percentage% (default)
+format =  <label>
 label = %percentage%%
 
-; Only applies if <ramp> is used
-ramp-0 = 1
-ramp-1 = 2
-ramp-2 = 3
-ramp-3 = 4
-ramp-4 = 5
+;ramp-0 = 1
+;ramp-1 = 2
+;ramp-2 = 3
+;ramp-3 = 4
+;ramp-4 = 5
