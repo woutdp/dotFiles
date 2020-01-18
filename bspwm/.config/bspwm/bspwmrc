@@ -15,18 +15,21 @@ bspc config focus_follows_pointer true
 
 bspc rule -a jetbrains-pycharm desktop='^4'
 bspc rule -a Gpick state=floating sticky=on
+bspc rule -a Mullvad\ VPN state=pseudo_tiled desktop='^7'
 
 # Background
 feh --bg-center ~/Pictures/Wallpapers/gruvbox.jpg
 
+# Polybar
 $HOME/.config/polybar/launch.sh
 
-# Needed for pycharm
+# Needed for PyCharm
 wmname LG3D
 
 # Restore audio to the correct state
 alsactl --file ~/.config/asound.state restore
 
 dunst -conf ~/.config/dunst/dunstrc &
+lxsession &
 compton &
 sxhkd &

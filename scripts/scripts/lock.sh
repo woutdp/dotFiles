@@ -37,7 +37,7 @@ i3lock -i $img \
   --indicator           \
   --timesize=40 \
   --timestr="%H:%M:%S"  \
-  --datestr="%A, the%e of %B" \
+  --datestr="%A, the %e of %B" \
   --veriftext="Verifying..." \
   --wrongtext="Wrong" \
   --date-font=hack \

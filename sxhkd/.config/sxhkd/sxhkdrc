@@ -57,7 +57,7 @@ super + 0; l
   bspc quit
 
 # quit/restart bspwm
-super + / + r
+super + shift + /
 	bspc wm -r
 
 # close and kill
