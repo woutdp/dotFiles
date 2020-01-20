@@ -1,3 +1,5 @@
+#! /usr/bin/env sh
+
 ##########################
 # wm independent hotkeys #
 ##########################
@@ -184,7 +186,7 @@ super + {Left,Down,Up,Right}
 	bspc node -v {-20 0,0 20,0 -20,20 0}
 
 ########
-# Rice #
+# rice #
 ########
 
 # Focused desktop window gap
