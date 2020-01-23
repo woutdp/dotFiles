@@ -1,9 +1,9 @@
 #! /bin/sh
 
 # Background
-feh --bg-center ~/Pictures/Wallpapers/gruvbox.jpg
+feh --bg-center ~/Pictures/Wallpapers/gruvbox.png
 
-compton &
+picom &
 sxhkd &
 dunst -conf ~/.config/dunst/dunstrc &
 lxsession &
@@ -35,7 +35,7 @@ bspc config automatic_scheme      longest_side
 
 bspc rule -a jetbrains-pycharm desktop='^4' follow=off
 bspc rule -a Gpick state=floating sticky=on
-bspc rule -a Mullvad\ VPN state=pseudo_tiled desktop='^7' follow=off
+bspc rule -a Mullvad\ VPN state=pseudo_tiled desktop='^8' follow=off
 bspc rule -a firefox desktop='^2' follow=off
 
 bspc config external_rules_command "~/scripts/external_rules.sh"

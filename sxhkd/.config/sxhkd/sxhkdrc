@@ -24,24 +24,16 @@ super + d
 super + l
   ~/scripts/lock.sh
 
-# Brightness keys
-XF86MonBrightnessUp
-	xbacklight + 10
-XF86MonBrightnessDown
-	xbacklight - 10
-
 Super_L
   polybar-msg cmd show
 @Super_L
   polybar-msg cmd hide
 
-# Volume keys
-XF86AudioRaiseVolume
-  ~/scripts/volume.sh up
-XF86AudioLowerVolume
-  ~/scripts/volume.sh down
-XF86AudioMute
-  ~/scripts/volume.sh mute
+XF86MonBrightness{Up,Down}
+	xbacklight {+,-} 10
+
+XF86Audio{Mute,RaiseVolume,LowerVolume}
+  ~/scripts/volume.sh {mute,up,down}
 
 Print
   flameshot gui
@@ -51,15 +43,13 @@ Print
 #################
 
 # quit/restart bspwm
-super + 0; s
-  shutdown now
-super + 0; r
-  shutdown -r now
+super + 0; {s,r}
+  shutdown {now,-r now}
 super + 0; l
   bspc quit
 
 # quit/restart bspwm
-super + shift + /
+super + shift + slash
 	bspc wm -r
 
 # close and kill
