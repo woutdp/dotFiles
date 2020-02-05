@@ -16,13 +16,21 @@ super + b
 super + n
   thunar
 
-# Rofi
+# Rofi apps menu
 super + d
-  rofi -show combi -p 'λ'
+  appsmenu &
+
+# Power
+super + 0
+  powermenu
 
 # Lock
 super + l
   ~/scripts/lock.sh
+
+# Network menu
+super + shift + n
+  networkmenu
 
 Super_L
   polybar-msg cmd show
@@ -41,12 +49,6 @@ Print
 #################
 # bspwm hotkeys #
 #################
-
-# quit/restart bspwm
-super + 0; {s,r}
-  shutdown {now,-r now}
-super + 0; l
-  bspc quit
 
 # quit/restart bspwm
 super + shift + slash
