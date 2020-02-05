@@ -6,3 +6,4 @@ export SHELL=/bin/fish
 export SXHKD_SHELL=/usr/bin/sh
 export XDG_CONFIG_HOME=$HOME/.config
 export _JAVA_AWT_WM_NONREPARENTING=1
+export PATH=$PATH:~/.local/bin
