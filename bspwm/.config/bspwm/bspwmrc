@@ -5,6 +5,7 @@ feh --bg-center ~/Pictures/Wallpapers/gruvbox.png
 
 picom &
 sxhkd &
+flameshot &
 dunst -conf ~/.config/dunst/dunstrc &
 lxsession &
 
