@@ -49,5 +49,4 @@ if not functions -q fisher
   fish -c fisher
 end
 
-eval (python -m virtualfish)
-source ~/.config/fish/config_local.fish
+set FILE ~/.config/fish/config_local.fish && test -f $FILE && source $FILE
