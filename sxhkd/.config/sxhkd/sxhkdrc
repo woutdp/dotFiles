@@ -18,11 +18,11 @@ super + n
 
 # Rofi apps menu
 super + d
-  appsmenu &
+  ~/scripts/appsmenu.sh
 
 # Power
 super + 0
-  powermenu
+  ~/scripts/powermenu.sh
 
 # Lock
 super + l
