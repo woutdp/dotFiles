@@ -9,4 +9,5 @@ exec yay -S --needed \
   pulseaudio-ctl \
   xfce4-power-manager \
   wmutils-git \
+  alsa-utils \
   neovim code pycharm-professional
