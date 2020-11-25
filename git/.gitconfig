@@ -6,7 +6,7 @@
   default = simple
 [core]
   editor = nvim
-	excludesfile = /home/wout/.gitignore_global
+  excludesfile = /home/wout/.gitignore_global
 [commit]
   verbose = true
   gpgSign = true
@@ -31,3 +31,7 @@
 	autosquash = true
 [help]
 	autocorrect = 1
+[pull]
+	rebase = true
+[merge]
+	conflictstyle = diff3
