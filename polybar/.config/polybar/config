@@ -13,7 +13,7 @@ yellow = #fabd2f
 
 [bar/mybar]
 modules-left = bspwm
-modules-right = backlight temperature memory cpu wlan battery pulseaudio date
+modules-right = backlight temperature memory cpu wlan battery pulseaudio clockify date
 background = ${colors.background}
 foreground = ${colors.foreground}
 font-0 = hack:pixelsize=11;2
@@ -151,7 +151,7 @@ bar-used-empty-foreground = ${colors.foreground-alt}
 type = internal/temperature
 interval = 1
 thermal-zone = 0
-hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon6/temp1_input
+hwmon-path = /sys/devices/platform/coretemp.0/hwmon/hwmon7/temp1_input
 base-temperature = 20
 warn-temperature = 60
 
@@ -161,3 +161,12 @@ type = internal/backlight
 card = intel_backlight
 format =  <label>
 label = %percentage%%
+
+
+[module/clockify]
+type = custom/script
+tail = true
+exec = polybar-clockify
+click-left = echo 'TOGGLE_TIMER' | nc 127.0.0.1 30300
+click-right = echo 'TOGGLE_HIDE' | nc 127.0.0.1 30300
+
