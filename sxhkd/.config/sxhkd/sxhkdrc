@@ -5,7 +5,7 @@
 ##########################
 
 # Terminal emulator
-super + Return
+super + shift + Return
   kitty
 
 # Browser
@@ -14,7 +14,7 @@ super + b
 
 # Filemanager
 super + n
-  thunar
+  nautilus
 
 # Rofi apps menu
 super + d
@@ -31,6 +31,10 @@ super + l
 # Network menu
 super + shift + n
   networkmenu
+
+# Scratchpad
+super + Return
+  ~/.config/bspwm/scripts/toggle_scratchpad.sh
 
 Super_L
   polybar-msg cmd show
