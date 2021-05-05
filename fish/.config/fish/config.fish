@@ -17,6 +17,15 @@ end
 alias stop_docker_containers "docker stop (docker ps -a -q)"
 alias remove_docker_containers "docker rm (docker ps -a -q)"
 alias delete_docker_images "docker rmi -f (docker images -a -q)"
+alias delete_docker_volumes "docker volume rm -f (docker volume ls -q)"
+
+function docker_nuke
+  stop_docker_containers
+  remove_docker_containers
+  delete_docker_images
+  delete_docker_volumes
+end
+
 
 function current_branch
   git symbolic-ref HEAD 2>/dev/null | cut -d"/" -f 3-8
