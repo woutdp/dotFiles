@@ -13,7 +13,7 @@ yellow = #fabd2f
 
 [bar/mybar]
 modules-left = bspwm
-modules-right = backlight temperature memory cpu wlan battery pulseaudio clockify date
+modules-right = backlight temperature memory cpu filesystem wlan battery pulseaudio clockify date
 background = ${colors.background}
 foreground = ${colors.foreground}
 font-0 = hack:pixelsize=11;2
@@ -95,20 +95,19 @@ ws-icon-3 = 3;
 ws-icon-4 = 4;4
 ws-icon-5 = 5;5
 ws-icon-6 = 6;6
-ws-icon-7 = 7;7
+ws-icon-7 = 7;
 ws-icon-8 = 8;
 
 
 [module/pulseaudio]
-type = internal/pulseaudio
-sink = alsa_output.pci-0000_00_1f.3.analog-surround-40
-use-ui-max = false
-format-volume = %{A3:pavucontrol&:}<label-volume>%{A}
-label-volume =  %percentage%%
-label-volume-foreground = ${root.foreground}
-label-muted = %{A3:pavucontrol&:}%{A}
-label-muted-foreground = ${colors.foreground-alt}
-click-right = pavucontrol &
+type = custom/script
+tail = true
+exec = pulseaudio-control --color-muted 555 --icons-volume " , " --icon-muted "" --sink-nicknames-from "device.description" --sink-nickname "alsa_output.hw_0_0: " --sink-nickname "bluez_sink.38_18_4C_9C_AC_67.a2dp_sink: | " listen
+click-right = exec pavucontrol &
+click-left = pulseaudio-control togmute
+click-middle = pulseaudio-control --sink-blacklist "alsa_output.pci-0000_01_00.1.hdmi-stereo-extra2" next-sink
+scroll-up = pulseaudio-control --volume-step 5 --volume-max 130 up
+scroll-down = pulseaudio-control --volume-step 5 --volume-max 130 down
 
 
 [module/cpu]
@@ -163,10 +162,22 @@ format =  <label>
 label = %percentage%%
 
 
+[module/filesystem]
+type = internal/fs
+mount-0 = /
+interval = 10
+fixed-values = true
+label-mounted = %free%
+
+
 [module/clockify]
 type = custom/script
 tail = true
 exec = polybar-clockify
 click-left = echo 'TOGGLE_TIMER' | nc 127.0.0.1 30300
 click-right = echo 'TOGGLE_HIDE' | nc 127.0.0.1 30300
+scroll-up = echo 'NEXT_MODE' | nc 127.0.0.1 30300
+scroll-down = echo 'PREVIOUS_MODE' | nc 127.0.0.1 30300
 
+
+; vim:ft=dosini
