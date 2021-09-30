@@ -25,13 +25,11 @@
               --decorate \
               --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(auto)%d%C(reset)'; \
           }; f"
-  amend = commit -a --amend --no-edit
-  rbi = rebase -i
 [rebase]
-	autosquash = true
+  autosquash = true
 [help]
-	autocorrect = 1
+  autocorrect = 1
 [pull]
-	rebase = true
+  rebase = true
 [merge]
-	conflictstyle = diff3
+  conflictstyle = diff3
