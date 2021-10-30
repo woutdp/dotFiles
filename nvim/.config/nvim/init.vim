@@ -10,6 +10,7 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
   Plug 'dag/vim-fish', { 'for': 'fish' }
   Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
+  Plug 'neoclide/jsonc.vim'
 call plug#end()
 
 " Use space instead of \ as leader
