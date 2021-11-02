@@ -11,12 +11,17 @@ swaylock \
     --screenshots \
     --clock \
     --timestr="%H:%M:%S"  \
-    --datestr="%A, %e %B" \
+    --datestr="%a,%e %B" \
     --indicator \
     --indicator-radius 140 \
     --indicator-thickness 16 \
     --effect-pixelate 22 \
     --effect-vignette 0.7:1 \
+    --font 'Sarasa Term K' \
+    --text-color $default \
+    --text-caps-lock-color $red \
+    --inside-color $dark \
+    --line-color $dark \
     \
     --ring-color $dark \
     --key-hl-color $green \

@@ -1,3 +1,14 @@
+@keyframes blink-low {
+	70% {
+		color: @foreground;
+	}
+
+	to {
+		color: @foreground;
+		background-color: #744E0D;
+	}
+}
+
 @keyframes blink-warning {
 	70% {
 		color: @foreground;
@@ -89,7 +100,7 @@
 #memory,
 #temperature,
 #battery {
-	animation-timing-function: linear;
+	animation-timing-function: ease-out;
 	animation-iteration-count: infinite;
 	animation-direction: alternate;
 }
@@ -120,10 +131,19 @@
 	color: @warning;
 }
 
+#cpu.low {
+	color: @memory;
+}
+
 /* Each warning that should blink */
 #battery.warning.discharging {
 	animation-name: blink-warning;
 	animation-duration: 3s;
+}
+
+#battery.low.discharging {
+	animation-name: blink-low;
+	animation-duration: 5s;
 }
 
 /* And now modules themselves in their respective order */
@@ -139,8 +159,9 @@
 }
 
 #workspaces button {
-	padding: 0 10px;
+  padding: 0;
 	color: #D4BE98;
+  font-size: 16pt;
 }
 
 #workspaces button.persistent {
@@ -149,12 +170,6 @@
 
 #workspaces button.visible {
 	color: #FE8019;
-}
-
-window#window {
-	margin-right: 40px;
-	margin-left: 40px;
-  transition: opacity .9s linear .9s;
 }
 
 #network {
@@ -231,4 +246,18 @@ window#window {
 
 #tray {
   margin: 0 5px;
+}
+
+tooltip {
+  color: @foreground;
+  background-color: @background;
+  font-weight: 400;
+  font-family: hack;
+  margin: 0 10px;
+  border-radius: 1em;
+}
+
+tooltip label {
+  color: @foreground;
+  padding: 0 5px;
 }

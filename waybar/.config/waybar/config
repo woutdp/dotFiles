@@ -6,7 +6,6 @@
 	// -------------------------------------------------------------------------
 	// Global configuration
 	// -------------------------------------------------------------------------
-	"layer": "bottom",
 	"position": "bottom",
   "height": 35,
 
@@ -39,6 +38,9 @@
 	// -------------------------------------------------------------------------
 	// Modules
 	// -------------------------------------------------------------------------
+  "sway/hide": {
+    "hide-on-startup": true
+  },
 
 	"custom/clockify": {
     "format": "{}",
@@ -53,16 +55,17 @@
 	"battery": {
 		"interval": 1,
 		"states": {
-			"warning": 30,
-			"critical": 15
+			"low": 30,
+			"warning": 15,
+			"critical": 5
 		},
-		"format": "{icon} {capacity}%", // Icon: bolt
+		"format": "{icon} {capacity}%",
 		"format-discharging": "{icon} {capacity}%",
 		"format-charging": " {capacity}%",
     "tooltip-format": "{time} left",
 		"format-icons": ["", "", "", "", "", "", "", "", "", "", "", ""],
 		"tooltip": true,
-    "full-at": 98
+    "full-at": 95
 	},
 
 	"clock#time": {
@@ -78,10 +81,12 @@
 	},
 
 	"cpu": {
-		"interval": 1,
+		"interval": 2,
 		"tooltip": true,
 		"format": " {usage}%",
 		"states": {
+		  "low": 0,
+		  "normal": 20,
 		  "warning": 70,
 		  "critical": 90
 		}
@@ -89,7 +94,8 @@
 
 	"memory": {
 		"interval": 5,
-		"format": "  {}%",
+		"format": "  {used:0.1f}G",
+		"tooltip-format": "{used:0.1f}G / {total:0.1f}G",
 		"states": {
 			"warning": 70,
 			"critical": 90
@@ -101,7 +107,7 @@
 		"format-wifi": "{icon}",
     "format-disconnected": "睊",
     "format-icons": ["", "", "", "", ""],
-    "tooltip-format": "{essid} : {bandwidthDownBits} {bandwidthUpBits} : {ifname} : {ipaddr} : {signalStrength}%",
+    "tooltip-format": "{essid} ({signalStrength}%) - {ifname} - {ipaddr} - {bandwidthDownBits} {bandwidthUpBits}",
 		"tooltip": true,
     "on-click": "kitty --class kitty-nmtui --session /home/wout/.config/kitty/nmtui"
 	},
@@ -122,18 +128,16 @@
 		"disable-scroll": false,
 		"format": "{icon}",
 		"format-icons": {
-			"0": "λ",
-			"1": "",
+			"0": "",
+			"1": "",
 			"2": "2",
-			"3": " ",
+			"3": "",
 			"4": "4",
 			"5": "5",
 			"6": "6",
-			"7": " ",
-			"8": " ",
+			"7": "",
+			"8": "",
 			"9": "9",
-			// "urgent": "",
-			// "focused": "",
       "default": ""
 		},
     "persistent_workspaces": {

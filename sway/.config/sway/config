@@ -10,11 +10,6 @@ set $right l
 
 set $term kitty
 
-# Your preferred application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-set $menu dmenu_path | exec wofi --insensitive --show=drun
-
 # Default wallpaper (more resolutions are available in @datadir@/backgrounds/sway/)
 output * bg ~/Pictures/Wallpapers/astronaut.png fill
 
@@ -25,7 +20,8 @@ bindsym $mod+Return exec $term
 bindsym $mod+w kill
 
 # Start your launcher
-bindsym $mod+d exec $menu
+bindsym $mod+d exec wofi --show drun
+bindsym $mod+m exec /home/wout/scripts/wofi_wifi.sh
 
 # Lockscreen
 bindsym $mod+l exec /home/wout/scripts/swaylock.sh
@@ -191,48 +187,13 @@ bindsym $mod+Print exec wl-color-picker &
 bindsym Print exec flameshot gui
 
 for_window [app_id="kitty-nmtui"] floating enable
+for_window [app_id="kruler"] floating enable
+for_window [app_id="Nautilus"] floating enable
 
 bar {
     mode hide
     swaybar_command /home/wout/scripts/waybar.sh
-    # hidden_state hide
 }
-
-# bar {
-    # id main
-    # swaybar_command /home/wout/scripts/waybar-configured.sh
-    # mode dock
-    # hidden_state show
-    # modifier none
-# }
-
-# bar {
-    # id info
-    # swaybar_command /home/wout/scripts/waybar-configured.sh
-    # mode hide
-    # hidden_state hide
-    # modifier $mod
-    # position top
-    # tray_output none
-# }
-
-#
-# Status Bar:
-#
-# Read `man 5 sway-bar` for more information about this section.
-# bar {
-    # position top
-
-    # # When the status_command prints a new line to stdout, swaybar updates.
-    # # The default just shows the current date and time.
-    # status_command while date +'%Y-%m-%d %I:%M:%S %p'; do sleep 1; done
-
-    # colors {
-        # statusline #ffffff
-        # background #323232
-        # inactive_workspace #32323200 #32323200 #5c5c5c
-    # }
-# }
 
 client.unfocused        #33332F #33332F #a89984 #a89984
 client.focused          #fabd2f #fabd2f #282828 #282828
@@ -263,7 +224,9 @@ input type:keyboard {
 
 # exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
 # exec hash dbus-update-activation-environment 2>/dev/null && \
-     # dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+  # dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
 
 include @sysconfdir@/sway/config.d/*
 
+exec systemctl --user import-environment;
+exec systemctl --user import-environment SWAYSOCK WAYLAND_DISPLAY;

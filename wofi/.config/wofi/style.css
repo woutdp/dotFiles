@@ -1,0 +1,46 @@
+window {
+  margin: 0px;
+  border: 1px solid #fabd2f;
+  background-color: #33332F;
+	font-family: Sarasa Term K, JetBrainsMono Nerd Font, Material Design Icons, unifont, Fira Code, Terminus, Siji;
+  font-size: 12pt;
+}
+
+#input {
+  margin: 5px;
+  border: none;
+  color: #a89984;
+  background-color: #2A2A2A;
+}
+
+#inner-box {
+  margin: 5px;
+  border: none;
+  background-color: #33332F;
+}
+
+#outer-box {
+  margin: 5px;
+  border: none;
+  background-color: #33332F;
+}
+
+#scroll {
+  margin: 0px;
+  border: none;
+}
+
+#text {
+  margin: 5px;
+  border: none;
+  color: #a89984;
+  padding: 0 10px;
+}
+
+#text:selected {
+  color: #D4BE98;
+}
+
+#entry:selected {
+  background-color: #2A2A2A;
+}
