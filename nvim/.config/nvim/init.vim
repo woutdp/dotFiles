@@ -11,6 +11,12 @@ call plug#begin('~/.config/nvim/plugged')
   Plug 'dag/vim-fish', { 'for': 'fish' }
   Plug 'raimon49/requirements.txt.vim', {'for': 'requirements'}
   Plug 'neoclide/jsonc.vim'
+  Plug 'ggandor/lightspeed.nvim'
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-lua/popup.nvim'
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
+  Plug 'elixir-editors/vim-elixir'
 call plug#end()
 
 " Use space instead of \ as leader
@@ -59,6 +65,7 @@ endif
 " vim-airline
 " ---------------------
 " Use special font that includes fancy arrows and stuff
+let s:fontsize = 12
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1 " enable airline tabline
 let g:airline#extensions#tabline#buffer_min_count = 2 " only show tabline if more than one buffer is open
@@ -68,6 +75,7 @@ let g:airline#extensions#tabline#tab_min_count = 2 " only show tabline if more t
 " ---------------------
 " Removes trailing whitespace on end of file
 autocmd BufEnter * EnableStripWhitespaceOnSave
+let g:better_whitespace_filetypes_blacklist=['diff', 'gitcommit', 'unite', 'qf', 'help']
 
 " nerdtree
 " --------
@@ -81,3 +89,11 @@ vmap <C-_> <leader>c<Space>
 
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
+
+" telescope
+" -------------
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
+nnoremap <leader>fl <cmd>Telescope git_files<cr>
