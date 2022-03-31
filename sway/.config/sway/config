@@ -67,40 +67,37 @@ set $ws7 7
 set $ws8 8
 set $ws9 9
 
-bindsym $mod+Escape workspace $ws0
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
+# Workrooms:
+set $workroom 1
+set $workspace 0
 
-# Move focused container to workspace
-bindsym $mod+Ctrl+Escape move container to workspace $ws0
-bindsym $mod+Ctrl+1 move container to workspace $ws1
-bindsym $mod+Ctrl+2 move container to workspace $ws2
-bindsym $mod+Ctrl+3 move container to workspace $ws3
-bindsym $mod+Ctrl+4 move container to workspace $ws4
-bindsym $mod+Ctrl+5 move container to workspace $ws5
-bindsym $mod+Ctrl+6 move container to workspace $ws6
-bindsym $mod+Ctrl+7 move container to workspace $ws7
-bindsym $mod+Ctrl+8 move container to workspace $ws8
-bindsym $mod+Ctrl+9 move container to workspace $ws9
+bindsym Alt+Shift+1 set $$workroom 1; workspace $$workroom$$workspace
+bindsym Alt+Shift+2 set $$workroom 2; workspace $$workroom$$workspace
+bindsym Alt+Shift+3 set $$workroom 3; workspace $$workroom$$workspace
+
+# Navigate
+bindsym $mod+Escape workspace $$workroom$ws0; set $$workspace $ws0
+bindsym $mod+1 workspace $$workroom$ws1; set $$workspace $ws1
+bindsym $mod+2 workspace $$workroom$ws2; set $$workspace $ws2
+bindsym $mod+3 workspace $$workroom$ws3; set $$workspace $ws3
+bindsym $mod+4 workspace $$workroom$ws4; set $$workspace $ws4
+bindsym $mod+5 workspace $$workroom$ws5; set $$workspace $ws5
+bindsym $mod+6 workspace $$workroom$ws6; set $$workspace $ws6
+bindsym $mod+7 workspace $$workroom$ws7; set $$workspace $ws7
+bindsym $mod+8 workspace $$workroom$ws8; set $$workspace $ws8
+bindsym $mod+9 workspace $$workroom$ws9; set $$workspace $ws9
 
 # Move to workspace with focused container
-bindsym $mod+Shift+Escape move container to workspace $ws0; workspace $ws0
-bindsym $mod+Shift+1 move container to workspace $ws1; workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2; workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3; workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4; workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5; workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6; workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7; workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
+bindsym $mod+Shift+Escape move container to workspace $$workroom$ws0; workspace $$workroom$ws0; set $$workspace $ws0
+bindsym $mod+Shift+1 move container to workspace $$workroom$ws1; workspace $$workroom$ws1; set $$workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $$workroom$ws2; workspace $$workroom$ws2; set $$workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $$workroom$ws3; workspace $$workroom$ws3; set $$workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $$workroom$ws4; workspace $$workroom$ws4; set $$workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $$workroom$ws5; workspace $$workroom$ws5; set $$workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $$workroom$ws6; workspace $$workroom$ws6; set $$workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $$workroom$ws7; workspace $$workroom$ws7; set $$workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $$workroom$ws8; workspace $$workroom$ws8; set $$workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $$workroom$ws9; workspace $$workroom$ws9; set $$workspace $ws9
 #
 # Layout stuff:
 #
@@ -143,7 +140,6 @@ bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 
 bindsym $mod+b exec google-chrome-stable
 bindsym $mod+n exec nautilus
-# bindsym Print exec flameshot gui
 
 #
 # Resizing containers:
@@ -182,9 +178,13 @@ mode $printscreen_mode {
     bindsym Escape mode "default"
 }
 
-# bindsym $mod+Print mode $printscreen_mode
+# bindsym Print mode $printscreen_mode
+bindsym Print exec exec grim -t png -g "$(slurp -d)" - | wl-copy -t image/png
 bindsym $mod+Print exec wl-color-picker &
-bindsym Print exec flameshot gui
+bindsym $mod+Shift+Print exec wf-recorder -f "/home/wout/Videos/recording.mp4" -g "$(slurp)"
+
+# bindsym Print exec flameshot gui
+# bindsym Print exec wl-color-picker &
 
 for_window [app_id="kitty-nmtui"] floating enable
 for_window [app_id="kruler"] floating enable
@@ -192,6 +192,7 @@ for_window [app_id="Nautilus"] floating enable
 
 bar {
     mode hide
+    hidden_state hide
     swaybar_command /home/wout/scripts/waybar.sh
 }
 
