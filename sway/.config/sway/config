@@ -76,7 +76,7 @@ bindsym Alt+Shift+2 set $$workroom 2; workspace $$workroom$$workspace
 bindsym Alt+Shift+3 set $$workroom 3; workspace $$workroom$$workspace
 
 # Navigate
-bindsym $mod+Escape workspace $$workroom$ws0; set $$workspace $ws0
+bindsym $mod+Escape workspace 0$ws0; set $$workspace $ws0
 bindsym $mod+1 workspace $$workroom$ws1; set $$workspace $ws1
 bindsym $mod+2 workspace $$workroom$ws2; set $$workspace $ws2
 bindsym $mod+3 workspace $$workroom$ws3; set $$workspace $ws3
@@ -84,11 +84,11 @@ bindsym $mod+4 workspace $$workroom$ws4; set $$workspace $ws4
 bindsym $mod+5 workspace $$workroom$ws5; set $$workspace $ws5
 bindsym $mod+6 workspace $$workroom$ws6; set $$workspace $ws6
 bindsym $mod+7 workspace $$workroom$ws7; set $$workspace $ws7
-bindsym $mod+8 workspace $$workroom$ws8; set $$workspace $ws8
-bindsym $mod+9 workspace $$workroom$ws9; set $$workspace $ws9
+bindsym $mod+8 workspace 9$ws8; set $$workspace $ws8
+bindsym $mod+9 workspace 9$ws9; set $$workspace $ws9
 
 # Move to workspace with focused container
-bindsym $mod+Shift+Escape move container to workspace $$workroom$ws0; workspace $$workroom$ws0; set $$workspace $ws0
+bindsym $mod+Shift+Escape move container to workspace 0$ws0; workspace 0$ws0; set $$workspace $ws0
 bindsym $mod+Shift+1 move container to workspace $$workroom$ws1; workspace $$workroom$ws1; set $$workspace $ws1
 bindsym $mod+Shift+2 move container to workspace $$workroom$ws2; workspace $$workroom$ws2; set $$workspace $ws2
 bindsym $mod+Shift+3 move container to workspace $$workroom$ws3; workspace $$workroom$ws3; set $$workspace $ws3
@@ -96,8 +96,8 @@ bindsym $mod+Shift+4 move container to workspace $$workroom$ws4; workspace $$wor
 bindsym $mod+Shift+5 move container to workspace $$workroom$ws5; workspace $$workroom$ws5; set $$workspace $ws5
 bindsym $mod+Shift+6 move container to workspace $$workroom$ws6; workspace $$workroom$ws6; set $$workspace $ws6
 bindsym $mod+Shift+7 move container to workspace $$workroom$ws7; workspace $$workroom$ws7; set $$workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $$workroom$ws8; workspace $$workroom$ws8; set $$workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $$workroom$ws9; workspace $$workroom$ws9; set $$workspace $ws9
+bindsym $mod+Shift+8 move container to workspace 9$ws8; workspace 9$ws8; set $$workspace $ws8
+bindsym $mod+Shift+9 move container to workspace 9$ws9; workspace 9$ws9; set $$workspace $ws9
 #
 # Layout stuff:
 #
@@ -209,7 +209,7 @@ smart_borders on
 smart_gaps on
 hide_edge_borders none
 
-workspace_auto_back_and_forth yes
+workspace_auto_back_and_forth no
 
 input type:touchpad {
     tap enabled
