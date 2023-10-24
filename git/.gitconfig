@@ -35,3 +35,5 @@
   conflictstyle = diff3
 [init]
 	defaultBranch = master
+[diff]
+	external = difft
